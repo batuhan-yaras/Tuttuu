@@ -118,7 +118,7 @@ class ImageService {
 
     if (permissionGranted) {
       try {
-        final pickedFiles = await _picker.pickMultiImage(); // Çoklu fotoğraf seçimi
+        final pickedFiles = await _picker.pickMultiImage();
         if (pickedFiles != null) {
           return pickedFiles.map((pickedFile) => File(pickedFile.path)).toList(); // Seçilen fotoğrafları listeye ekle
         } else {

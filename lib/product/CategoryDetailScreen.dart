@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tuttuu_app/core/tagImportanceSaving.dart';
+import 'package:tuttuu_app/ImportanceCalculation/tagImportanceSaving.dart';
 import '../UI/product/all_colors.dart';
 import '../UI/product/all_texts.dart';
 import '../UI/product/title_settings.dart';

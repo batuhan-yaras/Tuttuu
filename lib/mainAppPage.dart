@@ -17,7 +17,7 @@ import 'package:tuttuu_app/messagesPageView.dart';
 import 'package:tuttuu_app/product/CategoryDetailScreen.dart';
 import 'package:tuttuu_app/product/ProfilePageView.dart';
 import 'package:tuttuu_app/product/artistProfilePage.dart';
-import 'package:tuttuu_app/recommendation_page.dart';
+import 'package:tuttuu_app/ImportanceCalculation/recommendation_page.dart';
 import 'package:tuttuu_app/account_screen.dart';
 import 'package:tuttuu_app/signup_page.dart';
 import 'package:tuttuu_app/userProfilePage.dart';

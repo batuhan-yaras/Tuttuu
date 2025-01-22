@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tuttuu_app/UI/product/all_colors.dart';
 import 'package:tuttuu_app/UI/product/all_sizes.dart';
-import 'package:tuttuu_app/core/tagImportanceSaving.dart';
+import 'package:tuttuu_app/ImportanceCalculation/tagImportanceSaving.dart';
 
 class RatingsCommentsPageView extends StatefulWidget {
   const RatingsCommentsPageView({super.key, required this.receiverUserId, this.senderUserId = '', required this.isSender, this.isUser = false});

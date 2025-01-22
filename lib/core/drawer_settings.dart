@@ -9,7 +9,7 @@ import '../UI/product/all_colors.dart';
 import '../UI/product/all_texts.dart';
 import '../account_screen.dart';
 import '../login_page.dart';
-import '../recommendation_page.dart';
+import '../ImportanceCalculation/recommendation_page.dart';
 import 'gallery.dart';
 
 class GeneralDrawer extends StatefulWidget {

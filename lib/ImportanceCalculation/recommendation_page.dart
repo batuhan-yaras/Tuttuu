@@ -3,13 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tuttuu_app/product/CategoryDetailScreen.dart';
 
-import 'UI/product/all_texts.dart';
+import '../UI/product/all_texts.dart';
 
 class RecommendationPage extends StatefulWidget {
   const RecommendationPage({super.key});
 
-  @override
-  State<RecommendationPage> createState() => _RecommendationPageState();
+  @override  State<RecommendationPage> createState() => _RecommendationPageState();
 }
 
 class _RecommendationPageState extends State<RecommendationPage> {
@@ -37,22 +36,17 @@ class _RecommendationPageState extends State<RecommendationPage> {
       if (userInteractionDoc.exists) {
         List<Map<String, dynamic>> tags = List<Map<String, dynamic>>.from(userInteractionDoc.get('tagImportance'));
 
-        // Taglerin önem derecesine göre sıralanması
         tags.sort((a, b) => (b['importance'] as num).compareTo(a['importance'] as num));
 
         double maxImportance = tags.isNotEmpty ? tags.first['importance'] : 1;
 
-        // Taglere göre sınırlı sayıda görsel sorgulama
         for (var tag in tags) {
           String tagName = tag['tag'];
           double tagImportance = tag['importance'] ?? 1;
 
-          // Limit hesaplama
           int limit = ((totalPhotosCount) * (tagImportance / maxImportance)).round();
-
-          limit = limit < 3 ? 3 : limit; // Minimum 3 görsel
-          limit = limit > 10 ? 10 : limit; // Maksimum 10 görsel
-
+          limit = limit < 3 ? 3 : limit; // Minimum 3 image
+          limit = limit > 10 ? 10 : limit; // Maximum 10 image
 
           final tattooQuery = await firestore.collection('tattoos')
               .where('tags', arrayContains: tagName)
@@ -60,13 +54,12 @@ class _RecommendationPageState extends State<RecommendationPage> {
               .get();
 
           for (var tattooDoc in tattooQuery.docs) {
-            allImageUrls.add(tattooDoc.get('url')); // Tekrar eklememek için Set kullanıyoruz
+            allImageUrls.add(tattooDoc.get('url'));
           }
 
         }
       }
 
-      // Eğer kullanıcı etkileşimine göre sonuç yoksa, default tag'leri kullanarak görselleri çek
       if (allImageUrls.isEmpty) {
         for (var tag in defaultTags) {
           final tattooQuery = await firestore.collection('tattoos')

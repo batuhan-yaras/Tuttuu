@@ -72,6 +72,7 @@ Future<void> calculateAndSaveTagImportance() async {
       double tagRecency = 1 / (DateTime.now().difference(lastInteraction.toDate()).inSeconds.abs() + 1);
 
       double tagImportance = (frequency * frequencyWeight) + (tagRecency * recencyWeight);
+
       tagImportanceList.add({
         'tag': tagName,
         'importance': tagImportance,
