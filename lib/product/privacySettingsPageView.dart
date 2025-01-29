@@ -39,7 +39,7 @@ class _PrivacySettingsPageState extends State<PrivacySettingsPage> {
         });
       }
     } catch (e) {
-      print("Error loading Firestore data: $e");
+      print("Error loading data: $e");
     }
   }
 
@@ -108,10 +108,10 @@ class _PrivacySettingsPageState extends State<PrivacySettingsPage> {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 8,top: 40,bottom: 20),
-              child: MainTitle('Privacy Settings', size: 20),
+              child: MainTitle('Gizlilik Ayarları', size: 20),
             ),
             ListTileWithCard(
-              title: 'Hide my favourites to the other users.',
+              title: 'Favorilediğim dövmeler profilimde gösterilmesin.',
               showLeading: false,
               showSwitch: true,
               switchValue: isHiddenFavourite,
@@ -121,9 +121,9 @@ class _PrivacySettingsPageState extends State<PrivacySettingsPage> {
             ),
             SizedBox(height: 16,),
             ListTileWithCard(
-              title: "Don't show my given reviews on my profile.",
+              title: "Yaptığım yorumlar ve değerlendirmeler profilimde gösterilmesin.",
               showSubtitle: true,
-              subtitleText: "Your name will be anonymous in the reviews you leave on the studios' pages.",
+              subtitleText: "Stüdyoya yaptığınız değerlendirmede isminiz anonim olacaktır.",
               showLeading: false,
               showSwitch: true,
               switchValue: isHidden,

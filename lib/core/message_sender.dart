@@ -221,7 +221,7 @@ class _MessageSenderState extends State<MessageSender> {
                       controller: _controller,
                       decoration: InputDecoration(
                         labelStyle: TextStyle(color: MainColors().fieldLabelColorL),
-                        labelText: 'Your Message...',
+                        labelText: 'Mesajını yaz...',
                         border: const OutlineInputBorder(),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: MainColors().textFieldDisabledL),

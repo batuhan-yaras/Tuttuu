@@ -90,7 +90,7 @@ class _RecommendationPageState extends State<RecommendationPage> {
       body: imageUrls.isNotEmpty
           ? CategoryDetailScreenBase(
         leading: Text(''),
-        category: 'Tuttuu Recommendation',
+        category: 'Tuttuu Öneri',
         images: imageUrls,
         showFloatingActionButton: false,
         showDeleteButton: false, userId: userId,

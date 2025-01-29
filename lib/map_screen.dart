@@ -125,7 +125,7 @@ class _MapScreenState extends State<MapScreen> {
             });
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Set your studio's location with 'My Studio' button!")),
+              const SnackBar(content: Text("Stüdyonuzun konumunu 'Stüdyom' butonu ile belirtin!")),
             );
           }
         }
@@ -379,7 +379,7 @@ class _MapScreenState extends State<MapScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: ArtistButtons(
-              text: 'My Studio',
+              text: 'Stüdyom',
               onPressed: () {
                 setState(() {
                   _isMyStudioClicked = true;
@@ -406,8 +406,8 @@ class _MapScreenState extends State<MapScreen> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text("Are you sure?"),
-                            content: Text("Do you really save this location as your studio's location?"),
+                            title: Text("Emin misin?"),
+                            content: Text("Burası stüdyonuzun konumu olarak işaretlensin mi?"),
                             actions: [
                               TextButton(
                                 onPressed: () {
@@ -416,7 +416,7 @@ class _MapScreenState extends State<MapScreen> {
                                     _isMyStudioClicked = false;
                                   });
                                 },
-                                child: Text("No"),
+                                child: Text("Hayır"),
                               ),
                               TextButton(
                                 onPressed: () async {
@@ -426,14 +426,14 @@ class _MapScreenState extends State<MapScreen> {
                                     _isMyStudioClicked = false;
                                   });
                                 },
-                                child: Text("Yes"),
+                                child: Text("Evet"),
                               ),
                             ],
                           );
                         },
                       );
                     },
-                    buttonText: 'Save',
+                    buttonText: 'Kaydet',
 
                   ),
                 ),

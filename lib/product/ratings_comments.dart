@@ -59,7 +59,7 @@ class _RatingsCommentsState extends State<RatingsComments> {
         return '********';
       }
     } catch (e) {
-      return 'Unknown User';
+      return InfoTexts().unknownUser;
     }
   }
 
@@ -104,7 +104,7 @@ class _RatingsCommentsState extends State<RatingsComments> {
           ],
         ),
         widget.hideReviewsProfile
-        ? HiddenContainer(pageTitle: 'Hidden Reviews',assetImage: AppFeatures().hiddenReviews,)
+        ? HiddenContainer(pageTitle: 'Değerlendirmeler gizli',assetImage: AppFeatures().hiddenReviews,)
         : StreamBuilder<QuerySnapshot>(
           stream: _getStreamBasedOnSenderStatus(),
           builder: (context, snapshot) {
@@ -170,7 +170,7 @@ class _RatingsCommentsState extends State<RatingsComments> {
                                 }
                                 if (snapshot.hasError || !snapshot.hasData) {
                                   return Text(
-                                    'Unknown User',
+                                    'Kullanıcı bulunamadı.',
                                     style: TextStyle(
                                       color: Colors.red,
                                       fontWeight: FontWeight.bold,

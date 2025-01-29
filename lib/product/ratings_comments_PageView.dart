@@ -42,7 +42,7 @@ class _RatingsCommentsPageviewState extends State<RatingsCommentsPageView> {
           ),
           title: Center(
             child: Text(
-              "Rate and Comment",
+              "Yorum ve Değerlendirme",
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -55,7 +55,7 @@ class _RatingsCommentsPageviewState extends State<RatingsCommentsPageView> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Select Rating:",
+                    "Değerlendirme:",
                     style: TextStyle(
                         color: MainColors().fieldTitleColorL,
                         fontSize: 16,
@@ -83,7 +83,7 @@ class _RatingsCommentsPageviewState extends State<RatingsCommentsPageView> {
                   ),
                   SizedBox(height: 20),
                   Text(
-                    "Your Comment:",
+                    "Yorum:",
                     style: TextStyle(
                         color: MainColors().fieldTitleColorL,
                         fontSize: 16,
@@ -95,7 +95,7 @@ class _RatingsCommentsPageviewState extends State<RatingsCommentsPageView> {
                     maxLines: 3,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: "Write your comment here...",
+                      hintText: "Yorumunu buraya yaz...",
                     ),
                   ),
                 ],
@@ -108,7 +108,7 @@ class _RatingsCommentsPageviewState extends State<RatingsCommentsPageView> {
                 Navigator.pop(context); // Popup'ı kapat
               },
               child: Text(
-                "Cancel",
+                "İptal",
                 style: TextStyle(color: MainColors().fieldTitleColorL),
               ),
             ),
@@ -117,7 +117,7 @@ class _RatingsCommentsPageviewState extends State<RatingsCommentsPageView> {
                 if (selectedRating < 1) {
                   // Eğer yıldız seçilmemişse uyarı göster
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Please select at least 1 star.")),
+                    SnackBar(content: Text("Lütfen en az 1 yıldız seçiniz.")),
                   );
                   return;
                 }
@@ -135,16 +135,16 @@ class _RatingsCommentsPageviewState extends State<RatingsCommentsPageView> {
                       'timestamp': FieldValue.serverTimestamp(),
                     });
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Rating and Comment saved successfully!")),
+                      const SnackBar(content: Text("Yorum ve değerlendirme başarıyla kaydedildi!")),
                     );
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Failed to save data: $e")),
+                      SnackBar(content: Text("Kaydederken bir hata oluştu: $e")),
                     );
                   }
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("User is not logged in.")),
+                    SnackBar(content: Text("Kullanıcı giriş yapmamış.")),
                   );
                 }
                 await fetchAverageRating();
@@ -152,7 +152,7 @@ class _RatingsCommentsPageviewState extends State<RatingsCommentsPageView> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: MainColors().fieldTitleColorL),
               child: Text(
-                "Submit",
+                "Onayla",
                 style: TextStyle(color: MainColors().appBackgroundColor),
               ),
             ),
@@ -245,7 +245,7 @@ class _RatingsCommentsPageviewState extends State<RatingsCommentsPageView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Ratings and Comments',
+          'Yorumlar ve Değerlendirmeler',
           style: TextStyle(
             color: MainColors().fieldTitleColorL,
             fontWeight: FontWeight.bold,

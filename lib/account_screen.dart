@@ -167,7 +167,7 @@ class _AccountScreenState extends State<AccountScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'About Me',
+          ProfileTexts().aboutMe,
           style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -189,7 +189,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 bottomRight: Radius.circular(20),
               ),
             ),
-            hintText: 'Write something about yourself...',
+            hintText: 'Kendin hakkında bir şeyler yaz...',
           ),
         ),
       ],
@@ -231,21 +231,21 @@ class _AccountScreenState extends State<AccountScreen> {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Text("Are you sure?"),
-                              content: Text("Do you really want to delete your profile photo?"),
+                              title: Text("Emin misin?"),
+                              content: Text("Profil fotoğrafını silmek istiyor musun?"),
                               actions: [
                                 TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop(); // Close the dialog
                                   },
-                                  child: Text("No"),
+                                  child: Text("Hayır"),
                                 ),
                                 TextButton(
                                   onPressed: () {
                                     deleteProfilePhoto();
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text("Yes"),
+                                  child: Text("Evet"),
                                 ),
                               ],
                             );
@@ -288,36 +288,36 @@ class _AccountScreenState extends State<AccountScreen> {
             // Ad Soyad
             AccountInfoRow(
               icon: Icons.person,
-              title: 'Name',
-              value: userData!['fullName'] ?? 'Not available',
+              title: 'Ad Soyad',
+              value: userData!['fullName'] ?? 'Bilinmiyor',
             ),
             SizedBox(height: 8),
             // Email
             AccountInfoRow(
               icon: Icons.email,
-              title: 'Email',
-              value: userData!['email'] ?? 'Not available',
+              title: 'E-mail',
+              value: userData!['email'] ?? 'Bilinmiyor',
             ),
             SizedBox(height: 8),
             // Telefon Numarası
             AccountInfoRow(
               icon: Icons.phone,
-              title: 'Phone',
-              value: "+90${userData!['phoneNumber']}" ?? 'Not available',
+              title: 'Telefon numarası',
+              value: "+90${userData!['phoneNumber']}" ?? 'Bilinmiyor',
             ),
             SizedBox(height: 8),
             // Date of Birth
             AccountInfoRow(
               icon: Icons.cake,
-              title: 'Date of Birth',
-              value: formatDate(userData!['birth']) ?? 'Not available',
+              title: 'Doğum tarihi',
+              value: formatDate(userData!['birth']) ?? 'Bilinmiyor',
             ),
             SizedBox(height: 8),
             // Cinsiyet
             AccountInfoRow(
               icon: Icons.wc,
-              title: 'Gender',
-              value: userData!['gender'] ?? 'Not available',
+              title: 'Cinsiyet',
+              value: userData!['gender'] ?? 'Bilinmiyor',
             ),
             SizedBox(height: 30),
             // Hakkımda kısmı
@@ -356,7 +356,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     );
                   }
                 },
-                buttonText: 'Save',
+                buttonText: 'Kaydet',
                 height: 40,
                 width: 160,
                 fontSize: 14,

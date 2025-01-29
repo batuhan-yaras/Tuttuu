@@ -15,14 +15,14 @@ class _ImagePortfolioState extends State<ImagePortfolio> {
   bool isLoading = true;
   List<String> allImages = []; // Tüm görsellerin listesi
   final List<String> categories = [
-    '3D', 'Anime', 'Geometric', 'Lettering', 'Maori', 'Mandala', 'Minimal',
-    'New School', 'Old School', 'Portrait', 'Realism', 'Tribal', 'Watercolor'
+    '3D', 'Anime', 'Geometrik', 'Yazı', 'Maori', 'Mandala', 'Minimal',
+    'New School', 'Old School', 'Portre', 'Gerçekçi', 'Tribal', 'Suluboya'
   ]; // Kategorilerin listesi
   final List<String> tags = [
     '3d', 'anime', 'geometrik', 'yazı', 'maori', 'mandala', 'minimal',
     'newschool', 'oldschool', 'portre', 'realistik', 'tribal', 'suluboya'
   ]; // Etiketlerin listesi
-  String selectedCategory = 'All'; // Başlangıçta 'All' seçili
+  String selectedCategory = 'Hepsi'; // Başlangıçta 'All' seçili
   List<String> filteredImages = []; // Filtrelenmiş görseller
 
   @override
@@ -46,7 +46,7 @@ class _ImagePortfolioState extends State<ImagePortfolio> {
           List<String> tagsFromDb = List<String>.from(data['tags']); // Tagleri alıyoruz
 
           // Seçilen kategoriye göre filtreleme yapıyoruz
-          if (selectedCategory == 'All' || tagsFromDb.contains(tags[categories.indexOf(selectedCategory)])) {
+          if (selectedCategory == 'Hepsi' || tagsFromDb.contains(tags[categories.indexOf(selectedCategory)])) {
             imagesList.add(downloadURL);
           }
         } else {
@@ -85,7 +85,7 @@ class _ImagePortfolioState extends State<ImagePortfolio> {
                 loadTattoos(); // Kategori değiştiğinde görselleri tekrar yükle
               });
             },
-            items: ['All', ...categories].map<DropdownMenuItem<String>>((String value) {
+            items: ['Hepsi', ...categories].map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),

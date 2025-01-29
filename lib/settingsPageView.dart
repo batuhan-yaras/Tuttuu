@@ -28,21 +28,21 @@ class _SettingsPageViewState extends State<SettingsPageView> {
           children: [
             Padding(
               padding: const EdgeInsets.all(20),
-              child: MainTitle('Settings',size: 20),
+              child: MainTitle('Ayarlar',size: 20),
             ),
-            ListTileWithCard(leadingButton: Icons.notifications, title: 'Notifications',onTap: (){},),
+            ListTileWithCard(leadingButton: Icons.notifications, title: 'Bildirimler',onTap: (){},),
             SizedBox(height: 10,),
-            ListTileWithCard(leadingButton: Icons.visibility_off, title: 'Privacy',onTap: (){
+            ListTileWithCard(leadingButton: Icons.visibility_off, title: 'Gizlilik',onTap: (){
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => PrivacySettingsPage())
               );
             },),
             SizedBox(height: 10,),
-            ListTileWithCard(leadingButton: Icons.lock, title: 'Security',onTap: (){},),
+            ListTileWithCard(leadingButton: Icons.lock, title: 'Güvenlik',onTap: (){},),
             SizedBox(height: 10,),
-            ListTileWithCard(leadingButton: Icons.support, title: 'Help and Support',onTap: (){},),
+            ListTileWithCard(leadingButton: Icons.support, title: 'Destek ve Yardım',onTap: (){},),
             SizedBox(height: 10,),
-            ListTileWithCard(leadingButton: Icons.thumb_up, title: 'Rate the App',onTap: (){},),
+            ListTileWithCard(leadingButton: Icons.thumb_up, title: 'Uygulamayı Değerlendir',onTap: (){},),
           ],
         ),
       ),

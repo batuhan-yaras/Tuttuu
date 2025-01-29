@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:tuttuu_app/UI/product/all_colors.dart';
+import 'package:tuttuu_app/UI/product/all_texts.dart';
 import 'package:tuttuu_app/UI/product/pp_settings.dart';
 import 'package:tuttuu_app/UI/product/title_settings.dart';
 import 'package:tuttuu_app/core/message_sender.dart';
@@ -18,7 +19,7 @@ class _MessagesPageViewState extends State<MessagesPageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: MainTitle('Messages'),centerTitle: false,),
+      appBar: AppBar(title: MainTitle('Mesajlarım'),centerTitle: false,),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('conversations')
@@ -30,7 +31,7 @@ class _MessagesPageViewState extends State<MessagesPageView> {
             return const Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('No messages found.'));
+            return const Center(child: Text('Mesaj kutunuz boş.'));
           }
 
           return ListView.builder(
@@ -42,7 +43,7 @@ class _MessagesPageViewState extends State<MessagesPageView> {
               // Find the other participant ID (not the current user)
               final otherUserId = participants.firstWhere(
                     (id) => id != widget.currentUserId,
-                orElse: () => 'Unknown User',
+                orElse: () => InfoTexts().unknownUser,
               );
 
               // Fetch user details for the other participant

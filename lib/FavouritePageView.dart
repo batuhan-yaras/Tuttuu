@@ -24,7 +24,7 @@ class _FavouritePageViewState extends State<FavouritePageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: MainTitle('Favourites',size: 22),
+        title: MainTitle('Favoriler',size: 22),
       ),
       body: StreamBuilder<List<String>>(
         stream: favourites, // Burada doğrudan sınıf seviyesindeki stream kullanılıyor
@@ -33,16 +33,16 @@ class _FavouritePageViewState extends State<FavouritePageView> {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return const Center(
-                child: Text('An error occurred while loading favourites.'));
+                child: Text('Favorileri yüklerken bir sorun oldu.'));
           } else if (snapshot.hasData && snapshot.data!.isEmpty) {
-            return const Center(child: Text('You have no favourite photos yet!'));
+            return const Center(child: Text('Henüz favorilenmiş bir dövme yok.'));
           } else if (snapshot.hasData) {
             return CategoryDetailScreen(
               showAppBar: false,
               images: snapshot.data!, category: '',
             );
           } else {
-            return const Center(child: Text('Unexpected error.'));
+            return const Center(child: Text('Beklenmedik hata!'));
           }
         },
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tuttuu_app/UI/product/all_paddings.dart';
+import 'package:tuttuu_app/UI/product/all_texts.dart';
 import 'package:tuttuu_app/UI/product/image_add_box.dart';
 import 'package:tuttuu_app/UI/product/pp_settings.dart';
 import 'package:tuttuu_app/core/artist_portfolio.dart';
@@ -42,7 +43,7 @@ class ProfileBasePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'About Me',
+                      ProfileTexts().aboutMe,
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -89,7 +90,7 @@ class ProfileBasePage extends StatelessWidget {
                   isOwner: isOwner,
               ),
               MainDivider(40),
-              RatingsComments(receiverUserId: userId!,isSender: false,title: 'Ratings and Comments',hideReviewsProfile: false, isOwner: isOwner,),
+              RatingsComments(receiverUserId: userId!,isSender: false,title: ProfileTexts().ratingAndComments,hideReviewsProfile: false, isOwner: isOwner,),
             ],
           ),
         ],

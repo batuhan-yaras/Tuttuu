@@ -16,7 +16,7 @@ class FlexibleImageGrid extends StatefulWidget {
     required this.showDeleteButton,
     required this.showFloatingActionButton,
     required this.userId,
-    this.portfolioTitle = 'Portfolio',
+    this.portfolioTitle = 'Portföy',
     this.collectionName = 'tattoos',
     this.tag, required this.isPortfolio, this.isHiddenFavourite = false, required this.isOwner,
   });
@@ -65,7 +65,7 @@ class _FlexibleImageGridState extends State<FlexibleImageGrid> {
           ],
         ),
         widget.isHiddenFavourite
-        ? HiddenContainer(pageTitle: 'Hidden Favourites', assetImage: AppFeatures().hiddenFavourite)
+        ? HiddenContainer(pageTitle: 'Favoriler gizli', assetImage: AppFeatures().hiddenFavourite)
         : StreamBuilder<List<Map<String, dynamic>>>(
           stream: _getStream(),
           builder: (context, snapshot) {

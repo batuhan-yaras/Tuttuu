@@ -35,10 +35,10 @@ class PasswordResetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GeneralPopUp(
-      textTitle: 'Reset Your Password',
-      textSubtitle: 'A password reset link will be sent to your email.',
+      textTitle: 'Şifreni Yenile',
+      textSubtitle: 'Şifre yenileme bağlantısı mail adresinize gönderilecek.',
       isTextField: true,
-      buttonText: 'Send',
+      buttonText: 'Gönder',
       isButton: true,
       textFieldController: emailController,
       maxLengthField: 40,

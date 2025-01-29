@@ -37,8 +37,8 @@ class _SignupPageState extends State<SignupPage> {
   bool invalidEmail = false;
   bool passwordsMatch = true;
   String pageTitle = isTattooArtist
-      ? "Share Your Art with the World"
-      : "Discover Unique Designs for You";
+      ? "Sanatını dünyayla paylaş."
+      : "Senin için en uygun tasarımı bul.";
 
   late PageController _pageController;
   int _currentIndex = 0;
@@ -105,9 +105,9 @@ class _SignupPageState extends State<SignupPage> {
 
   Widget WhichTitle(){
     if(isTattooArtist){
-      return MainTitle('SIGN UP - ARTIST',size: 20);
+      return MainTitle('KAYIT OL - DÖVME SANATÇISI',size: 20);
     } else {
-      return MainTitle('SIGN UP - ENTHUSIAST',size: 20);
+      return MainTitle('KAYIT OL - DÖVME SEVER',size: 20);
     }
   }
   @override
@@ -157,24 +157,24 @@ class _SignupPageState extends State<SignupPage> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: ErrorContainer(
-                      text: 'Passwords do not match. Please try again.',
+                      text: 'Şifreler eşleşmiyor. Lütfen tekrar deneyin.',
                       color: MainColors().errorContainer,
                     ),
                   ),
                 // Diğer hata mesajları
                 if (usedEmail == true)
                   ErrorContainer(
-                    text: 'Email is already in used.',
+                    text: 'Böyle bir E-Mail adresiyle daha önce kayıt olunmuş. Giriş yapmayı deneyin.',
                     color: MainColors().errorContainer,
                   ),
                 if (invalidEmail == true)
                   ErrorContainer(
-                    text: 'Invalid E-mail Address.',
+                    text: 'E-Mail adresi yanlış.',
                     color: MainColors().errorContainer,
                   ),
                 if (weakPassword == true)
                   ErrorContainer(
-                    text: 'Password is too weak.',
+                    text: 'Daha güçlü bir şifre oluşturmayı deneyin.',
                     color: MainColors().errorContainer,
                   ),
                 GeneralButtons(

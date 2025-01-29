@@ -63,10 +63,10 @@ class _ArtistQPageState extends State<ArtistQPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MainTitle('Enthusiast',size: 24),
+              MainTitle('Dövme Sever',size: 24),
               PhotoAndTextWidget(pageController: _pageController, textItems: itemsTexts2, subtext: itemsSubTexts2, photoItems: itemsPhotos2, onPageChanged: _onPageChanged2),
               BuildPageIndicatorGeneral(currentIndex: _currentIndex2, items: itemsTexts2),
-              GeneralButtons(buttonText: "Here to find my dream tattoo.", width: double.infinity,fontSize: 14,onPressed: (){
+              GeneralButtons(buttonText: "Hayalimdeki dövmeyi bulmak istiyorum.", width: double.infinity,fontSize: 14,onPressed: (){
                 setState(() {
                   isTattooArtist = false;
                 });
@@ -79,10 +79,10 @@ class _ArtistQPageState extends State<ArtistQPage> {
                 padding: EdgeInsets.symmetric(vertical: 7),
                 child: Divider(color: Colors.black54,height: 10,thickness: 0.6,),
               ),
-              MainTitle('Artist',size: 24),
+              MainTitle('Dövme Sanatçısı',size: 24),
               PhotoAndTextWidget(pageController: _pageController, textItems: itemsTexts, subtext: itemsSubTexts, photoItems: itemsPhotos, onPageChanged: _onPageChanged),
               BuildPageIndicatorGeneral(currentIndex: _currentIndex, items: itemsTexts),
-              GeneralButtons(buttonText: "I’m a tattoo artist based in a studio.",width: double.infinity,fontSize: 14,onPressed: (){
+              GeneralButtons(buttonText: "Stüdyoda çalışan bir dövme sanatçısıyım.",width: double.infinity,fontSize: 14,onPressed: (){
                 setState(() {
                   isTattooArtist = true;
                 });

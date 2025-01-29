@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 SizedBox(height: 40),
-                MainTitle('LOGIN', size: 20),
+                MainTitle('GİRİŞ YAP', size: 20),
                 SizedBox(height: 20),
                 TextFieldStyles(
                   controller: _emailController,
@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                           print(rememberMeLOCAL);
                         },
                         child: Text(
-                          'Remember me on this device',
+                          'Beni Hatırla',
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -182,11 +182,11 @@ class _LoginPageState extends State<LoginPage> {
 
                       setState(() {
                         if (e.code == 'invalid-credential') {
-                          errorMessage = 'Invalid credential. Please check your E-mail and password.';
+                          errorMessage = 'Girilen bilgiler yanlış. E-mail adresinizi ve şifrenizi kontrol edin.';
                         } else if (e.code == 'invalid-email') {
-                          errorMessage = 'The email address is badly formatted.';
+                          errorMessage = 'Lütfen geçerli bir E-Mail adresi girin.';
                         } else if (e.code == 'wrong-password') {
-                          errorMessage = 'Password is wrong.';
+                          errorMessage = 'Şifre yanlış';
                         } else {
                           errorMessage = 'Bir hata oluştu.';
                         }
