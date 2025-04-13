@@ -3,10 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserDataService {
   Future<Map<String, dynamic>?> fetchUserData(String userId) async {
     try {
-      DocumentSnapshot<Map<String, dynamic>> userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(userId)
-          .get();
+      DocumentSnapshot<Map<String, dynamic>> userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(userId).get();
 
       if (userDoc.exists) {
         return userDoc.data();

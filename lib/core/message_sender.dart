@@ -26,7 +26,7 @@ class _MessageSenderState extends State<MessageSender> {
   final TextEditingController _controller = TextEditingController();
 
   String getConversationId(String userId1, String userId2) {
-    return userId1.compareTo(userId2) < 0 ? '$userId1\_$userId2' : '$userId2\_$userId1';
+    return userId1.compareTo(userId2) < 0 ? '${userId1}_$userId2' : '${userId2}_$userId1';
   }
 
   Future<void> sendMessage(String message) async {
@@ -36,11 +36,7 @@ class _MessageSenderState extends State<MessageSender> {
     _controller.clear();
 
     if (message.isNotEmpty) {
-      await FirebaseFirestore.instance
-          .collection('conversations')
-          .doc(conversationId)
-          .collection('messages')
-          .add({
+      await FirebaseFirestore.instance.collection('conversations').doc(conversationId).collection('messages').add({
         'text': message,
         'senderId': currentUserId,
         'receiverUserId': widget.receiverUserId,
@@ -73,10 +69,7 @@ class _MessageSenderState extends State<MessageSender> {
   Future<void> isTattooArtist() async {
     try {
       // Firestore'dan ilgili veriyi çekme
-      DocumentSnapshot userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(widget.receiverUserId)
-          .get();
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(widget.receiverUserId).get();
 
       // Verinin mevcut olup olmadığını kontrol et
       if (userDoc.exists) {
@@ -103,10 +96,7 @@ class _MessageSenderState extends State<MessageSender> {
   Future<void> getStudioId() async {
     try {
       // Firestore'dan ilgili veriyi çekme
-      DocumentSnapshot userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(widget.receiverUserId)
-          .get();
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(widget.receiverUserId).get();
 
       // Verinin mevcut olup olmadığını kontrol et
       if (userDoc.exists) {
@@ -148,22 +138,36 @@ class _MessageSenderState extends State<MessageSender> {
         title: GestureDetector(
           child: Row(
             children: [
-              CircleAvatar(radius: 20, child: ProfilePicture(imageUrl: imageUrl,userName: widget.fullName,)),
-              SizedBox(width: 10),
+              CircleAvatar(
+                  radius: 20,
+                  child: ProfilePicture(
+                    imageUrl: imageUrl,
+                    userName: widget.fullName,
+                  )),
+              const SizedBox(width: 10),
               MainTitle(widget.fullName, size: 20),
             ],
           ),
-          onTap: (){
-            if(_isTattooArtist == true){
+          onTap: () {
+            if (_isTattooArtist == true) {
               Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfilePageView(studioId: _studioId,showFloatingButton: false,))
-              );
-            } else{
+                  MaterialPageRoute(
+                      builder: (context) => ProfilePageView(
+                            studioId: _studioId,
+                            showFloatingButton: false,
+                          )));
+            } else {
               Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => UserProfilePage(receiverUserId: widget.receiverUserId, sendMessageFunction: false, userId: widget.receiverUserId, isOwner: false,isAppBar: true,))
-              );
+                  MaterialPageRoute(
+                      builder: (context) => UserProfilePage(
+                            receiverUserId: widget.receiverUserId,
+                            sendMessageFunction: false,
+                            userId: widget.receiverUserId,
+                            isOwner: false,
+                            isAppBar: true,
+                          )));
             }
           },
         ),
@@ -185,13 +189,10 @@ class _MessageSenderState extends State<MessageSender> {
                     itemCount: messages.length,
                     itemBuilder: (context, index) {
                       final message = messages[index];
-                      final isSentByCurrentUser =
-                          message['senderId'] == FirebaseAuth.instance.currentUser?.uid;
+                      final isSentByCurrentUser = message['senderId'] == FirebaseAuth.instance.currentUser?.uid;
 
                       return Align(
-                        alignment: isSentByCurrentUser
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
+                        alignment: isSentByCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
                         child: Container(
                           margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                           padding: const EdgeInsets.all(10),
@@ -251,4 +252,3 @@ class _MessageSenderState extends State<MessageSender> {
     );
   }
 }
-

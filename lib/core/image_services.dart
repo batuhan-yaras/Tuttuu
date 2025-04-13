@@ -11,22 +11,20 @@ class ImageService {
   final ImagePicker _picker = ImagePicker();
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
-
   // İzin isteme fonksiyonu
   Future<bool> requestPermission() async {
     var cameraStatus = await Permission.camera.request();
     return cameraStatus.isGranted;
   }
 
-
   Future<void> addFavouritePhotos(String userId, String photoUrl) async {
-    try{
+    try {
       final userDoc = FirebaseFirestore.instance.collection('favourites').doc(userId);
 
       await userDoc.set({
         'photos': FieldValue.arrayUnion([photoUrl]),
       }, SetOptions(merge: true));
-    } catch(e){
+    } catch (e) {
       print('Favorilere ekleme hatası: $e');
     }
   }
@@ -36,8 +34,7 @@ class ImageService {
   // Favori fotoğrafları kontrol et
   Future<bool> isPhotoInFavourites(String userId, String imagePath) async {
     try {
-      DocumentSnapshot snapshot =
-      await _firestore.collection('favourites').doc(userId).get();
+      DocumentSnapshot snapshot = await _firestore.collection('favourites').doc(userId).get();
       if (!snapshot.exists) return false;
 
       List<dynamic> photos = snapshot['photos'] ?? [];
@@ -84,21 +81,21 @@ class ImageService {
   Stream<List<String>> getFavouritePhotos(String userId) {
     try {
       // Firestore'dan verileri dinliyoruz
-      return _firestore.collection('favourites')
+      return _firestore
+          .collection('favourites')
           .doc(userId)
-          .snapshots()  // Bu, dokümanda yapılan her değişiklikte stream tetiklenir
+          .snapshots() // Bu, dokümanda yapılan her değişiklikte stream tetiklenir
           .map((snapshot) {
-        if (!snapshot.exists) return [];  // Eğer doküman yoksa boş liste döner
+        if (!snapshot.exists) return []; // Eğer doküman yoksa boş liste döner
 
         List<dynamic> photos = snapshot['photos'] ?? [];
-        return List<String>.from(photos.reversed);  // Verileri String listesine dönüştürüp döndürüyoruz
+        return List<String>.from(photos.reversed); // Verileri String listesine dönüştürüp döndürüyoruz
       });
     } catch (e) {
       print('Error fetching favourite photos: $e');
-      return Stream.value([]);  // Hata durumunda boş bir stream döner
+      return Stream.value([]); // Hata durumunda boş bir stream döner
     }
   }
-
 
   Future<List<String>> fetchUserImages({required String tag, required String userId}) async {
     // Firestore'dan kullanıcının görsellerini al
@@ -119,14 +116,7 @@ class ImageService {
     if (permissionGranted) {
       try {
         final pickedFiles = await _picker.pickMultiImage();
-        if (pickedFiles != null) {
-          return pickedFiles.map((pickedFile) => File(pickedFile.path)).toList(); // Seçilen fotoğrafları listeye ekle
-        } else {
-          print('No images selected.');
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('No images selected.')),
-          );
-        }
+        return pickedFiles.map((pickedFile) => File(pickedFile.path)).toList(); // Seçilen fotoğrafları listeye ekle
       } catch (e) {
         print('Error occurred while picking images: ${e.toString()}');
         ScaffoldMessenger.of(context).showSnackBar(
@@ -136,16 +126,15 @@ class ImageService {
     } else {
       print('Permissions not granted');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Permissions not granted')),
+        const SnackBar(content: Text('Permissions not granted')),
       );
     }
 
     return []; // Eğer bir şey seçilmediyse boş liste döndür
   }
 
-
-  Future<List<String>> uploadImages(
-      BuildContext context, List<File> images, String userId, List<String> tags, String directory, bool isTattoo) async {
+  Future<List<String>> uploadImages(BuildContext context, List<File> images, String userId, List<String> tags,
+      String directory, bool isTattoo) async {
     List<String> downloadUrls = [];
 
     if (images.isNotEmpty) {
@@ -164,14 +153,14 @@ class ImageService {
             String downloadUrl = await snapshot.ref.getDownloadURL();
             downloadUrls.add(downloadUrl);
 
-            if(isTattoo == true){
+            if (isTattoo == true) {
               await FirebaseFirestore.instance.collection('tattoos').add({
                 'url': downloadUrl,
                 'userId': userId,
                 'tags': tags,
                 'timestamp': FieldValue.serverTimestamp(),
               });
-            } else{
+            } else {
               // Firebase Firestore'a kayıt ekleme
               await FirebaseFirestore.instance.collection('userImages').add({
                 'url': downloadUrl,
@@ -187,7 +176,7 @@ class ImageService {
 
         // Başarı mesajı göster
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('All images uploaded successfully!')),
+          const SnackBar(content: Text('All images uploaded successfully!')),
         );
       } catch (e) {
         print('General error occurred: ${e.toString()}');
@@ -195,17 +184,12 @@ class ImageService {
     } else {
       // Görsel seçilmediğinde kullanıcıyı bilgilendir
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('No images selected to upload.')),
+        const SnackBar(content: Text('No images selected to upload.')),
       );
     }
 
     return downloadUrls; // Yüklenen tüm görsellerin URL'lerini döndür
   }
-
-
-
-
-
 
   Future<void> deleteImageFromStorage(String imageUrl) async {
     try {
@@ -214,15 +198,5 @@ class ImageService {
     } catch (e) {
       print('Error deleting image from storage: $e');
     }
-
   }
-
-
-
 }
-
-
-
-
-
-

@@ -11,16 +11,39 @@ class ImagePortfolio extends StatefulWidget {
   @override
   State<ImagePortfolio> createState() => _ImagePortfolioState();
 }
+
 class _ImagePortfolioState extends State<ImagePortfolio> {
   bool isLoading = true;
   List<String> allImages = []; // Tüm görsellerin listesi
   final List<String> categories = [
-    '3D', 'Anime', 'Geometrik', 'Yazı', 'Maori', 'Mandala', 'Minimal',
-    'New School', 'Old School', 'Portre', 'Gerçekçi', 'Tribal', 'Suluboya'
+    '3D',
+    'Anime',
+    'Geometrik',
+    'Yazı',
+    'Maori',
+    'Mandala',
+    'Minimal',
+    'New School',
+    'Old School',
+    'Portre',
+    'Gerçekçi',
+    'Tribal',
+    'Suluboya'
   ]; // Kategorilerin listesi
   final List<String> tags = [
-    '3d', 'anime', 'geometrik', 'yazı', 'maori', 'mandala', 'minimal',
-    'newschool', 'oldschool', 'portre', 'realistik', 'tribal', 'suluboya'
+    '3d',
+    'anime',
+    'geometrik',
+    'yazı',
+    'maori',
+    'mandala',
+    'minimal',
+    'newschool',
+    'oldschool',
+    'portre',
+    'realistik',
+    'tribal',
+    'suluboya'
   ]; // Etiketlerin listesi
   String selectedCategory = 'Hepsi'; // Başlangıçta 'All' seçili
   List<String> filteredImages = []; // Filtrelenmiş görseller
@@ -72,12 +95,12 @@ class _ImagePortfolioState extends State<ImagePortfolio> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: MainTitle(InfoTexts().tuttuuGallery,size: 22),
+        title: MainTitle(InfoTexts().tuttuuGallery, size: 22),
         actions: [
           DropdownButton<String>(
             dropdownColor: MainColors().appBackgroundColor,
-            style: TextStyle(color: MainColors().fieldTitleColorL,fontSize: 14,fontWeight: FontWeight.w400),
-            padding: EdgeInsets.only(right: 20.0),
+            style: TextStyle(color: MainColors().fieldTitleColorL, fontSize: 14, fontWeight: FontWeight.w400),
+            padding: const EdgeInsets.only(right: 20.0),
             value: selectedCategory,
             onChanged: (String? newValue) {
               setState(() {
@@ -94,18 +117,17 @@ class _ImagePortfolioState extends State<ImagePortfolio> {
           ),
         ],
       ),
-
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: CategoryDetailScreen(
-          isRandom: true,
-          showAppBar: false,
-          category: selectedCategory, // Seçilen kategori adı
-          images: filteredImages, // Filtrelenmiş görselleri geçiyoruz
-        ),
-      ),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: CategoryDetailScreen(
+                isRandom: true,
+                showAppBar: false,
+                category: selectedCategory, // Seçilen kategori adı
+                images: filteredImages, // Filtrelenmiş görselleri geçiyoruz
+              ),
+            ),
     );
   }
 }

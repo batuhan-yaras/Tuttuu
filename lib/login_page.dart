@@ -28,11 +28,10 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-
 class _LoginPageState extends State<LoginPage> {
   bool showSpinner = false;
   bool rememberMeLOCAL = false;
-  String errorMessage = '';  // Hata mesajını saklayacak değişken
+  String errorMessage = ''; // Hata mesajını saklayacak değişken
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _popUpTextFieldController = TextEditingController();
@@ -57,9 +56,9 @@ class _LoginPageState extends State<LoginPage> {
             padding: MainPaddings().appPadding,
             child: Column(
               children: [
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 MainTitle('GİRİŞ YAP', size: 20),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextFieldStyles(
                   controller: _emailController,
                   labelText: FieldTexts().fieldEmail,
@@ -77,11 +76,10 @@ class _LoginPageState extends State<LoginPage> {
                   invisibleBool: true,
                 ),
                 // Hata mesajı için container
-                if (errorMessage.isNotEmpty)
-                  ErrorContainer(text: errorMessage, color: MainColors().errorContainer),
+                if (errorMessage.isNotEmpty) ErrorContainer(text: errorMessage, color: MainColors().errorContainer),
                 Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Theme(
                       data: Theme.of(context).copyWith(
                         checkboxTheme: CheckboxThemeData(
@@ -113,9 +111,11 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextButtonRow(
                     text: FieldTexts().forgotPassword,
                     onPressed: () {
-                      showDialog(context: context, builder: (BuildContext context){
-                        return PasswordResetPage();
-                      });
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return PasswordResetPage();
+                          });
                     },
                   ),
                 ),
@@ -124,44 +124,41 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () async {
                     setState(() {
                       showSpinner = true;
-                      errorMessage = '';  // Hata mesajını sıfırla
+                      errorMessage = ''; // Hata mesajını sıfırla
                     });
-          
+
                     try {
                       final userCredential = await _auth.signInWithEmailAndPassword(
                         email: _emailController.text.trim(),
                         password: _passwordController.text.trim(),
                       );
-          
+
                       final user = userCredential.user;
-          
+
                       if (user != null) {
                         if (user.emailVerified) {
                           final userId = user.uid;
-                          final userDoc = await FirebaseFirestore.instance
-                              .collection('users')
-                              .doc(userId)
-                              .get();
-          
+                          final userDoc = await FirebaseFirestore.instance.collection('users').doc(userId).get();
+
                           if (userDoc.exists) {
                             await _setRememberMe(rememberMeLOCAL);
                             final data = userDoc.data();
                             final fullName = data?['fullName'] ?? '';
                             final isTattooArtist = data?['isTattooArtist'] ?? false;
-          
+
                             if (fullName.isEmpty) {
                               Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => InformationPage(isTattooArtist: isTattooArtist),
                                 ),
-                                    (route) => false,
+                                (route) => false,
                               );
                             } else {
                               Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(builder: (context) => const MainAppPage()),
-                                    (route) => false,
+                                (route) => false,
                               );
                             }
                           } else {
@@ -202,7 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                 ),
-                rowForLoginandSignup(context, ButtonTexts().signup, const ArtistQPage(),ButtonTexts().newHere),
+                rowForLoginandSignup(context, ButtonTexts().signup, const ArtistQPage(), ButtonTexts().newHere),
               ],
             ),
           ),
@@ -211,6 +208,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-
-
